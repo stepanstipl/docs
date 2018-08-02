@@ -1,5 +1,7 @@
 # Pure Terraform to manage infrastructure
 
+https://github.com/stepanstipl/gpii-pure
+
 ## What
 Use only Terraform and it's providers to manage GCE/GKE infrastrucrure, with
 simple Make wrapper.
@@ -30,9 +32,30 @@ is less prone to errors and is more secure.
 - More flexible to extend
 
 ## Architecture notes
-- Charts
-  Helm Charts will live in separate repository, have independent versioning and CI
-  workflow and be published to GCS based Helm repository.
+
+The structure of the solution is very simple, with well defined
+interfaces (via Terrafrom variables) between components.
+
+```
+user/CI -> docker -> make -> terraform -> terraform-providers
+```
+
+In general it aims to follow Linux philosophy of *do one thing and do it well*.
+
+Refer to the code repo for more details https://github.com/stepanstipl/gpii-pure.
+
+### Helm Charts
+
+Helm Charts will live in separate repository, have independent versioning and CI
+workflow and be published to GCS based Helm repository.
+
+### More complex code
+This solution does not rule out inclusion of more complex code, let's say in
+Ruby, when appropriate. But rather than being tangled into rest of the infra code,
+it would live separately and be included via another docker container.
+
+Good example might be performance tests. The tests would be packaged as anotther
+docker container, with well-defined interface (parametes like URL, etc.).
 
 ## Use cases
 
