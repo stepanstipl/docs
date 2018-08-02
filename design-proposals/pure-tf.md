@@ -106,7 +106,7 @@ Terraform. Ideally it would run inside GCP and therefore allow us to use
 service accounts for instances. Otherwise credentials can be passed as a file or
 environemnt variable.
 
-#$# Tests
+### Tests
 Testing has not been addressed as part of this spike.
 
 ## FAQ
